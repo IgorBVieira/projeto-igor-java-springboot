@@ -31,6 +31,18 @@ public class ProjetoIgorApplication {
         return customerRepository.findAll();    // retorna todos os clientes
     }
 
+    @GetMapping("{customerId}")
+    public Optional<Customer> getCustomerById(@PathVariable("customerId") final Integer id) {
+
+       Optional <Customer>result = customerRepository.findById(id);
+
+       if(result.isEmpty()){
+           throw new RuntimeException("Customer not found");
+       }
+
+        return customerRepository.findById(id);
+    }
+
     record NewCustomerRequest(String name, String email, Integer age) {
 
     }
