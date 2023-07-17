@@ -1,6 +1,7 @@
 package com.igor;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.igor.entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,10 @@ public class ProjetoIgorApplication {
         customer.setAge(request.age());
         customerRepository.save(customer);
 
+    }
+    @DeleteMapping("{customerId}")
+    public void deleteCustomer(@PathVariable("customerId") Integer id){
+        customerRepository.deleteById(id);
     }
 
 
